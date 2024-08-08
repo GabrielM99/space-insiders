@@ -1,0 +1,11 @@
+- Refatorar todo o código para incluir o uso de Design Patterns.
+- Utilizar o novo sistema de input.
+- Explicar sobre convenções de código (tipo o porquê de estar seguindo o padrão Unity ao invés do padrão Microsoft)
+- Organizar namespaces.
+- Usar pooling pros projéteis?
+- Organizar hierarquia com Pretty Object
+- Partícula de explosão
+- Fundo que se move.
+- Barra de vida pras naves.
+
+- Excluir este arquivo.

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &9159772086505684079
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1960731894771260946, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960731894771260946, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960731894771260946, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960731894771260946, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960731894771260946, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960731894771260946, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960731894771260946, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960731894771260946, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960731894771260946, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960731894771260946, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2030899314641352719, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_Name
+      value: Green Alien
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034295802658127805, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9691305ac21e7f14ba7b77aec66a2732, type: 2}
+    - target: {fileID: 5628558415611637479, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1160045823, guid: 741dd11ca01b3184faac7cb4bb21d13a, type: 3}
+    - target: {fileID: 5628558415611637479, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247628789486661806, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_Size.x
+      value: 0.380635
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247628789486661806, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_Size.y
+      value: 0.52356505
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247628789486661806, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.00395371
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247628789486661806, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
