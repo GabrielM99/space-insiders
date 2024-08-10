@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: eadf619788f74a04f9b91b17c96c25c3, type: 2}
+    - target: {fileID: 3015536886247447096, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4375
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347117900908374290, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
+      propertyPath: m_Name
+      value: Graphics
+      objectReference: {fileID: 0}
     - target: {fileID: 5628558415611637479, guid: 29b96cc94e09319448e7c32ce57441a5, type: 3}
       propertyPath: m_Sprite
       value: 
