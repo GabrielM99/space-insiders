@@ -41,6 +41,7 @@ namespace Game
 
 		[Space]
 		[SerializeField] private ValueGraphics _valueGraphics;
+		[SerializeField] private GameOverScreen _gameOverScreen;
 
 		private int value
 		{
@@ -75,6 +76,7 @@ namespace Game
 		private Range alienDestroySpeedDelta { get => _alienDestroySpeedDelta; }
 
 		private ValueGraphics valueGraphics { get => _valueGraphics; }
+		private GameOverScreen gameOverScreen { get => _gameOverScreen; }
 
 		#region Unity
 		private void Awake()
@@ -142,7 +144,7 @@ namespace Game
 				// Aliens reached the bottom.
 				else if (direction == Vector2.up)
 				{
-					Restart();
+					GameOver();
 				}
 			}
 		}
@@ -164,6 +166,14 @@ namespace Game
 		public void Restart()
 		{
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
+
+		/// <summary>
+		/// Ends the game.
+		/// </summary>
+		public void GameOver()
+		{
+			gameOverScreen.Open(player.score);
 		}
 
 		/// <summary>

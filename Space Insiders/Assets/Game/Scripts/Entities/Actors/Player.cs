@@ -24,11 +24,11 @@ namespace Game.Entities
         [Space]
         [SerializeField] private PauseScreen _pauseScreen;
 
-        private int score
+        public int score
         {
             get => _score;
 
-            set
+            private set
             {
                 _score = value;
                 scoreValueGraphics.SetValue(value);
@@ -89,7 +89,7 @@ namespace Game.Entities
         public override void Destroy()
         {
             base.Destroy();
-            level.Restart();
+            level.GameOver();
         }
 
         /// <summary>

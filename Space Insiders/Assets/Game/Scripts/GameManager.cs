@@ -30,6 +30,22 @@ namespace Game
 		#endregion
 
 		/// <summary>
+		/// Pauses the game.
+		/// </summary>
+		public static void Pause()
+		{
+			Time.timeScale = 0f;
+		}
+
+		/// <summary>
+		/// Unpauses the game.
+		/// </summary>
+		public static void Unpause()
+		{
+			Time.timeScale = 1f;
+		}
+
+		/// <summary>
 		/// Saves a score.
 		/// </summary>
 		public static void SaveScore(string name, int score)
@@ -39,8 +55,17 @@ namespace Game
 				return;
 			}
 
+			foreach (ScoreData scoreData in saveData.scores)
+			{
+				if (scoreData.name == name)
+				{
+					scoreData.value = score;
+					return;
+				}
+			}
+
 			saveData.scores.Add(new ScoreData(name, score));
-			saveData.scores.Sort((a, b) => a.value.CompareTo(b.value));
+			saveData.scores.Sort((a, b) => b.value.CompareTo(a.value));
 		}
 
 		/// <summary>

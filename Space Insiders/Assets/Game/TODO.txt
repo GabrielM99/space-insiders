@@ -1,11 +1,11 @@
 [X] Power-ups
 [X] Niveis Procedurais com Progressão de Dificuldade
 [X] Barras de Vida
-[ ] Menus (inicial, morte, pause)
-[ ] Highscore
+[X] Menus (inicial, scoreboard, morte, pause)
+[X] Highscore
 [ ] Partículas (raio, míssel, laser, explosão e propulsão)
+[ ] Sons
 [ ] Screenshake (em explosões)
-[ ] Sons ()
 [ ] Background Móvel
 [ ] Shader (dissolve inimigo)
 [ ] Documentação

@@ -15,12 +15,12 @@ namespace Game.UI
 		#region Unity
 		private void OnEnable()
 		{
-			Pause();
+			GameManager.Pause();
 		}
 
 		private void OnDisable()
 		{
-			Unpause();
+			GameManager.Unpause();
 		}
 		#endregion
 
@@ -61,22 +61,6 @@ namespace Game.UI
 		private void Open()
 		{
 			gameObject.SetActive(true);
-		}
-
-		/// <summary>
-		/// Pauses the game.
-		/// </summary>
-		private void Pause()
-		{
-			Time.timeScale = 0f;
-		}
-
-		/// <summary>
-		/// Unpauses the game.
-		/// </summary>
-		private void Unpause()
-		{
-			Time.timeScale = 1f;
 		}
 	}
 }

@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _saveData:
-    scores: 
+    scores: []
 --- !u!4 &624225075
 Transform:
   m_ObjectHideFlags: 0
