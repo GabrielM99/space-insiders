@@ -9,18 +9,22 @@ namespace Game.UI
 	public class PauseScreen : MonoBehaviour
 	{
 		[SerializeField] private string _menuScene;
+		[SerializeField] private GameObject _pauseButton;
 
 		private string menuScene { get => _menuScene; }
+		private GameObject pauseButton { get => _pauseButton; }
 
 		#region Unity
 		private void OnEnable()
 		{
 			GameManager.Pause();
+			pauseButton.SetActive(false);
 		}
 
 		private void OnDisable()
 		{
 			GameManager.Unpause();
+			pauseButton.SetActive(true);
 		}
 		#endregion
 

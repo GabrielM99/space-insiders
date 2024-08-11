@@ -1,17 +1,17 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using Game.Effects;
 using Game.Items;
 using Game.UI;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 namespace Game.Entities
 {
     /// <summary>
     /// An user-controlled ship.
     /// </summary>
+    [RequireComponent(typeof(AudioSource))]
     public class Player : Ship
     {
         [Header(nameof(Player))]
@@ -22,7 +22,12 @@ namespace Game.Entities
         [SerializeField] private ValueGraphics _scoreValueGraphics;
 
         [Space]
-        [SerializeField] private PauseScreen _pauseScreen;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _collectSound;
+
+        private const string MOVEMENT_BUTTON = "Horizontal";
+        private const string SHOOT_BUTTON = "Shoot";
+        private const string PAUSE_BUTTON = "Pause";
 
         public int score
         {
@@ -35,15 +40,24 @@ namespace Game.Entities
             }
         }
 
+        private AudioSource audioSource { get => _audioSource; set => _audioSource = value; }
+        private AudioClip collectSound { get => _collectSound; }
+
+        private bool isMouseOverUI => EventSystem.current.IsPointerOverGameObject();
+
         private ValueGraphics lifeValueGraphics { get => _lifeValueGraphics; }
         private ValueGraphics scoreValueGraphics { get => _scoreValueGraphics; }
-
-        private PauseScreen pauseScreen { get => _pauseScreen; }
 
         private List<EffectInfo> effects { get; set; }
         private List<EffectInfo> effectsToRemove { get; set; }
 
         #region Unity
+        protected override void Reset()
+        {
+            base.Reset();
+            audioSource = GetComponent<AudioSource>();
+        }
+
         protected override void Awake()
         {
             base.Awake();
@@ -101,6 +115,8 @@ namespace Game.Entities
             {
                 ApplyEffect(effect);
             }
+
+            audioSource.PlayOneShot(collectSound);
         }
 
         /// <summary>
@@ -153,16 +169,19 @@ namespace Game.Entities
         /// </summary>
         private void UpdateInputs()
         {
-            movementDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
+            movementDirection = new Vector2(Input.GetAxisRaw(MOVEMENT_BUTTON), 0f);
 
-            if (Input.GetKey(KeyCode.Space))
+            if (!isMouseOverUI)
             {
-                Shoot(Vector2.up);
+                if (Input.GetButton(SHOOT_BUTTON))
+                {
+                    Shoot(Vector2.up);
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetButtonDown(PAUSE_BUTTON))
             {
-                pauseScreen.Toggle();
+                level.TogglePause();
             }
         }
     }

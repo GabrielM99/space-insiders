@@ -15,7 +15,6 @@ namespace Game.Entities
 		[Space]
 		[SerializeField] private Projectile[] _projectilePrefabs;
 		[SerializeField, Min(0f)] private float _shootCooldown;
-		private float shootCooldown { get => _shootCooldown; }
 
 		public Life life { get => _life; private set => _life = value; }
 
@@ -23,6 +22,7 @@ namespace Game.Entities
 		public float currentShootSpeedMultiplier { get; set; }
 
 		private Projectile[] projectilePrefabs { get => _projectilePrefabs; }
+		private float shootCooldown { get => _shootCooldown; }
 		private Timer shootCooldownTimer { get; set; }
 
 		#region Unity
@@ -84,7 +84,7 @@ namespace Game.Entities
 			Projectile projectilePrefab = projectilePrefabs[Random.Range(0, projectilePrefabs.Length)];
 			// The origin should be outside the agent, so we calculate it based on the collider's bounds.
 			Vector2 origin = direction * Mathf.Max(collider.bounds.size.x, collider.bounds.size.y) + (Vector2)transform.position;
-			Projectile projectile = level.Spawn(projectilePrefab, origin, Quaternion.identity);
+			Projectile projectile = level.Spawn(projectilePrefab, origin, Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.up, direction)));
 			projectile.Shoot(this, direction);
 		}
 	}

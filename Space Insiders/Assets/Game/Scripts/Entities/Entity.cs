@@ -20,12 +20,15 @@ namespace Game
 
 		[Header(nameof(Entity))]
 		[SerializeField] private DestroyMode _destroyMode;
+		[SerializeField] private ParticleSystem _destroyParticlePrefab;
 
 		private static Dictionary<GameObject, Entity> entityByObject { get; set; }
 
 		public Level level { get; internal set; }
 		public Action<Entity> onDestroyed { get; set; }
 
+		protected bool isDestroyed { get; private set; }
+		protected ParticleSystem destroyParticlePrefab { get => _destroyParticlePrefab; }
 		private DestroyMode destroyMode { get => _destroyMode; }
 
 		/// <summary>
@@ -38,7 +41,7 @@ namespace Game
 
 		#region Unity
 		protected virtual void Reset() { }
-		protected virtual void OnEnable() { }
+		protected virtual void OnEnable() { isDestroyed = false; }
 		protected virtual void Awake() { Register(); }
 		protected virtual void OnDisable() { }
 		protected virtual void Start() { }
@@ -86,6 +89,13 @@ namespace Game
 		/// </summary>
 		public virtual void Destroy()
 		{
+			if (isDestroyed)
+			{
+				return;
+			}
+
+			isDestroyed = true;
+
 			if (destroyMode == DestroyMode.Deactivate)
 			{
 				gameObject.SetActive(false);
@@ -97,6 +107,12 @@ namespace Game
 
 			// Notifies the entity was destroyed.
 			onDestroyed?.Invoke(this);
+
+			// Spawns a particle when destroyed.
+			if (destroyParticlePrefab != null)
+			{
+				level.Spawn(destroyParticlePrefab, transform.position, Quaternion.identity);
+			}
 		}
 
 		/// <summary>

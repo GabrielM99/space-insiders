@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destroyMode: 1
+  _destroyParticlePrefab: {fileID: 925772090626726978, guid: 039c687c58958904497ada26c85d2b8f, type: 3}
   _rigidbody: {fileID: 2393255976171872917}
   _collider: {fileID: 5457081484661287044}
   _defaultSpeed: 1.5

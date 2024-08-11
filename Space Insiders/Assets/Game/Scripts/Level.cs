@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Game.Entities;
 using Game.UI;
@@ -10,7 +11,7 @@ namespace Game
 	/// <summary>
 	/// A game level.
 	/// </summary>
-	[RequireComponent(typeof(EdgeCollider2D))]
+	[RequireComponent(typeof(EdgeCollider2D), typeof(AudioSource))]
 	public class Level : MonoBehaviour
 	{
 		[SerializeField] private EdgeCollider2D _collider;
@@ -20,6 +21,7 @@ namespace Game
 		[SerializeField, Range(0f, 1f)] private float _difficultyCurve = 0.1f;
 
 		[Space]
+		[SerializeField] private Camera _camera;
 		[SerializeField] private Player _player;
 		[SerializeField] private Drone _drone;
 		[SerializeField] private Shield[] _shields;
@@ -41,7 +43,15 @@ namespace Game
 
 		[Space]
 		[SerializeField] private ValueGraphics _valueGraphics;
+		[SerializeField] private PauseScreen _pauseScreen;
+
+		[Space]
 		[SerializeField] private GameOverScreen _gameOverScreen;
+		[SerializeField, Min(0f)] private float _gameOverDelay;
+
+		[Space]
+		[SerializeField] private AudioSource _audioSource;
+		[SerializeField] private AudioClip _clearSound;
 
 		private int value
 		{
@@ -55,6 +65,7 @@ namespace Game
 		}
 		private float difficultyCurve { get => _difficultyCurve; }
 
+		private new Camera camera { get => _camera; }
 		private Player player { get => _player; }
 		private Drone drone { get => _drone; }
 		private Shield[] shields { get => _shields; }
@@ -76,9 +87,23 @@ namespace Game
 		private Range alienDestroySpeedDelta { get => _alienDestroySpeedDelta; }
 
 		private ValueGraphics valueGraphics { get => _valueGraphics; }
+		private PauseScreen pauseScreen { get => _pauseScreen; }
+
 		private GameOverScreen gameOverScreen { get => _gameOverScreen; }
+		private Coroutine gameOverCoroutine { get; set; }
+		private float gameOverDelay { get => _gameOverDelay; }
+
+		private AudioSource audioSource { get => _audioSource; set => _audioSource = value; }
+		private AudioClip clearSound { get => _clearSound; }
+
+		private Coroutine shakeCoroutine { get; set; }
 
 		#region Unity
+		private void Reset()
+		{
+			audioSource = GetComponent<AudioSource>();
+		}
+
 		private void Awake()
 		{
 			aliens = new List<Alien>();
@@ -92,6 +117,7 @@ namespace Game
 
 			Assign(player);
 			Assign(drone);
+			Assign(shields);
 
 			Generate();
 		}
@@ -144,7 +170,7 @@ namespace Game
 				// Aliens reached the bottom.
 				else if (direction == Vector2.up)
 				{
-					GameOver();
+					player.Destroy();
 				}
 			}
 		}
@@ -153,11 +179,46 @@ namespace Game
 		/// <summary>
 		/// Spawns an entity in the level.
 		/// </summary>
-		public T Spawn<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent = null) where T : Entity
+		public T Spawn<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent = null) where T : Object
 		{
-			Entity entity = Instantiate(prefab, position, rotation);
-			Assign(entity, parent);
-			return entity as T;
+			T instance = Instantiate(prefab, position, rotation, parent);
+
+			if (instance is Entity entity)
+			{
+				Assign(entity);
+			}
+
+			return instance;
+		}
+
+		/// <summary>
+		/// Shakes the level.
+		/// </summary>
+		public void Shake(float duration, float intensity)
+		{
+			if (shakeCoroutine != null)
+			{
+				shakeCoroutine = StartCoroutine(ShakeCoroutine(duration, intensity));
+			}
+		}
+
+		/// <summary>
+		/// The coroutine for shaking the level.
+		/// </summary>
+		private IEnumerator ShakeCoroutine(float duration, float intensity)
+		{
+			Vector3 cameraStartPosition = camera.transform.position;
+
+			float time = 0f;
+
+			while (time < duration)
+			{
+				time += Time.unscaledDeltaTime;
+				camera.transform.position = cameraStartPosition + (Vector3)Random.insideUnitCircle * intensity * Mathf.Sin(time / duration);
+				yield return null;
+			}
+
+			camera.transform.position = cameraStartPosition;
 		}
 
 		/// <summary>
@@ -173,7 +234,28 @@ namespace Game
 		/// </summary>
 		public void GameOver()
 		{
+			if (gameOverCoroutine == null)
+			{
+				gameOverCoroutine = StartCoroutine(GameOverCoroutine());
+			}
+		}
+
+		/// <summary>
+		/// The coroutine for displaying the game over screen.
+		/// </summary>
+		private IEnumerator GameOverCoroutine()
+		{
+			yield return new WaitForSeconds(gameOverDelay);
 			gameOverScreen.Open(player.score);
+			gameOverCoroutine = null;
+		}
+
+		/// <summary>
+		/// Pauses or unpauses the level.
+		/// </summary>
+		public void TogglePause()
+		{
+			pauseScreen.Toggle();
 		}
 
 		/// <summary>
@@ -191,6 +273,17 @@ namespace Game
 		{
 			entity.level = this;
 			entity.transform.parent = parent == null ? transform : parent;
+		}
+
+		/// <summary>
+		/// Assignes an array of entities in the level.
+		/// </summary>
+		private void Assign(Entity[] entities, Transform parent = null)
+		{
+			foreach (Entity entity in entities)
+			{
+				Assign(entity, parent);
+			}
 		}
 
 		/// <summary>
@@ -262,6 +355,7 @@ namespace Game
 		{
 			Generate();
 			value++;
+			audioSource.PlayOneShot(clearSound);
 		}
 
 		/// <summary>
@@ -299,6 +393,8 @@ namespace Game
 			{
 				return;
 			}
+
+			Shake(0.5f, 10f);
 
 			aliens.Remove(entity as Alien);
 
