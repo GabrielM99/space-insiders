@@ -66,6 +66,8 @@ namespace Game
 
 			saveData.scores.Add(new ScoreData(name, score));
 			saveData.scores.Sort((a, b) => b.value.CompareTo(a.value));
+
+			instance.SaveData();
 		}
 
 		/// <summary>
