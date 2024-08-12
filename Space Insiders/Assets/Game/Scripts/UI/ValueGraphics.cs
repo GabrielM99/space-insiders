@@ -33,7 +33,15 @@ namespace Game.UI
 		/// </summary>
 		public void SetValue(int value)
 		{
-			textMesh.text = value.ToString();
+			SetText(value.ToString());
+		}
+
+		/// <summary>
+		/// Sets the text.
+		/// </summary>
+		public void SetText(string text)
+		{
+			textMesh.text = text;
 
 			if (animator != null)
 			{

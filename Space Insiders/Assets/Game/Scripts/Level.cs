@@ -181,7 +181,7 @@ namespace Game
 		/// </summary>
 		public T Spawn<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent = null) where T : Object
 		{
-			T instance = Instantiate(prefab, position, rotation, parent);
+			T instance = Instantiate(prefab, position, rotation, parent == null ? transform : parent);
 
 			if (instance is Entity entity)
 			{
@@ -270,10 +270,9 @@ namespace Game
 		/// <summary>
 		/// Assignes an entity in the level.
 		/// </summary>
-		private void Assign(Entity entity, Transform parent = null)
+		private void Assign(Entity entity)
 		{
 			entity.level = this;
-			entity.transform.parent = parent == null ? transform : parent;
 		}
 
 		/// <summary>
@@ -283,7 +282,7 @@ namespace Game
 		{
 			foreach (Entity entity in entities)
 			{
-				Assign(entity, parent);
+				Assign(entity);
 			}
 		}
 

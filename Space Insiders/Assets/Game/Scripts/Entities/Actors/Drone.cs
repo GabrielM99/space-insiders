@@ -58,6 +58,11 @@ namespace Game.Entities
 		/// </summary>
 		private void Patrol()
 		{
+			if (isDestroyed)
+			{
+				return;
+			}
+
 			if (waypoint == null)
 			{
 				if (patrolTimer.Run())

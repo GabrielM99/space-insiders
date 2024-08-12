@@ -1924,7 +1924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8205691202375168034, guid: e6a62830e11f53b47ba342f6814dafab, type: 3}
       propertyPath: m_text
-      value: 3
+      value: 3/3
       objectReference: {fileID: 0}
     - target: {fileID: 8205691202375168034, guid: e6a62830e11f53b47ba342f6814dafab, type: 3}
       propertyPath: m_fontColor.b
@@ -2507,7 +2507,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 116.002495, y: -22.5}
+  m_AnchoredPosition: {x: 116.0025, y: -22.5}
   m_SizeDelta: {x: 232.00499, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1004187896
@@ -3886,8 +3886,8 @@ Canvas:
   m_GameObject: {fileID: 1710194456}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3897,7 +3897,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 136948149
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1710194460

@@ -73,7 +73,7 @@ namespace Game.Entities
         protected override void Start()
         {
             base.Start();
-            life.onValueChanged += (value) => lifeValueGraphics.SetValue(value);
+            life.onValueChanged += (value) => lifeValueGraphics.SetText($"{value}/{life.maxValue}");
         }
 
         protected override void Update()
