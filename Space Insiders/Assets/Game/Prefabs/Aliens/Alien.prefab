@@ -129,6 +129,7 @@ MonoBehaviour:
   _life: {fileID: 5729370071084764763}
   _projectilePrefabs:
   - {fileID: 6855887248131904365, guid: 7de015d49c66f1447bb101aec48233e0, type: 3}
+  - {fileID: 4378673042844286967, guid: 8b79cfb280f5cb54e919b0c7d1249518, type: 3}
   _shootCooldown: 0
   _points: 10
   _dropPrefab: {fileID: 7273877677760236465, guid: 7ef0805ec75eca0459e91d7fc5c9f575, type: 3}

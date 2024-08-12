@@ -3,15 +3,14 @@
 [X] Barras de Vida
 [X] Menus (inicial, scoreboard, morte, pause)
 [X] Highscore
-[ ] Partículas (raio, míssel, laser, explosão e propulsão)
-[ ] Sons
-[ ] Screenshake (em explosões)
-[ ] Background Móvel
-[ ] Shader (dissolve inimigo)
+[X] Partículas (raio, míssel, laser, explosão e propulsão)
+[X] Sons
+[X] Screenshake (em explosões)
+[X] Background Móvel
+[X] Shader
 [ ] Documentação
 [ ] Excluir TODO
 
 IDEIAS
 
 - Explicar sobre convenções de código (tipo o porquê de estar seguindo o padrão Unity ao invés do padrão Microsoft)
-- Fundo que se move.

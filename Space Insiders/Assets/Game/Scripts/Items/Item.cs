@@ -15,6 +15,7 @@ namespace Game.Items
 		[SerializeField] private Effect[] _effects;
 
 		public Sprite sprite { get => _sprite; }
+
 		public Effect[] effects { get => _effects; }
 	}
 }

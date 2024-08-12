@@ -22,6 +22,9 @@ namespace Game.Entities
         [SerializeField] private ValueGraphics _scoreValueGraphics;
 
         [Space]
+        [SerializeField] private CollectPopup _collectPopupPrefab;
+
+        [Space]
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _collectSound;
 
@@ -47,6 +50,8 @@ namespace Game.Entities
 
         private ValueGraphics lifeValueGraphics { get => _lifeValueGraphics; }
         private ValueGraphics scoreValueGraphics { get => _scoreValueGraphics; }
+
+        private CollectPopup collectPopupPrefab { get => _collectPopupPrefab; }
 
         private List<EffectInfo> effects { get; set; }
         private List<EffectInfo> effectsToRemove { get; set; }
@@ -94,16 +99,26 @@ namespace Game.Entities
         {
             base.OnTargetHit(target);
 
+            // We kiiled an alien.
             if (target is Alien alien && alien.life.isEmpty)
             {
                 score += alien.points;
+                ShakeLevel();
+                SpawnCollectPopup(alien.transform.position, alien.points.ToString());
             }
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+            ShakeLevel();
         }
 
         public override void Destroy()
         {
             base.Destroy();
             level.GameOver();
+            ShakeLevel();
         }
 
         /// <summary>
@@ -116,7 +131,22 @@ namespace Game.Entities
                 ApplyEffect(effect);
             }
 
+            SpawnCollectPopup(transform.position, item.name);
             audioSource.PlayOneShot(collectSound);
+        }
+
+        private void SpawnCollectPopup(Vector2 position, string text)
+        {
+            CollectPopup collectPopup = level.Spawn(collectPopupPrefab, position, Quaternion.identity);
+            collectPopup.textMesh.text = "+" + text;
+        }
+
+        /// <summary>
+        /// Shakes the level.
+        /// </summary>
+        private void ShakeLevel()
+        {
+            level.Shake(0.25f, 1 / 16f);
         }
 
         /// <summary>

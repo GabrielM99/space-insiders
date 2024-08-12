@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Movement Speed
   m_EditorClassIdentifier: 
   _sprite: {fileID: -751911268, guid: 745d2a7cc3d54c341a14f7c84937e9bb, type: 3}
+  _color: {r: 0.21176472, g: 0.7725491, b: 0.9568628, a: 1}
   _effects:
   - {fileID: 11400000, guid: d7a3dad24c477c542bff4e04d358bda3, type: 2}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 292af724ad6e7314291452e216d9f46a, type: 3}
   m_Name: Haste
   m_EditorClassIdentifier: 
-  _duration: 7
+  _duration: 10
   _speedMultiplier: 1.5
   _accelerationMultiplier: 1.25

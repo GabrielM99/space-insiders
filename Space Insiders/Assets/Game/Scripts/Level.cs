@@ -196,7 +196,7 @@ namespace Game
 		/// </summary>
 		public void Shake(float duration, float intensity)
 		{
-			if (shakeCoroutine != null)
+			if (shakeCoroutine == null)
 			{
 				shakeCoroutine = StartCoroutine(ShakeCoroutine(duration, intensity));
 			}
@@ -214,11 +214,12 @@ namespace Game
 			while (time < duration)
 			{
 				time += Time.unscaledDeltaTime;
-				camera.transform.position = cameraStartPosition + (Vector3)Random.insideUnitCircle * intensity * Mathf.Sin(time / duration);
+				camera.transform.position = cameraStartPosition + (Vector3)Random.insideUnitCircle * intensity * ((Mathf.Sin(time / duration) + 1) / 2f);
 				yield return null;
 			}
 
 			camera.transform.position = cameraStartPosition;
+			shakeCoroutine = null;
 		}
 
 		/// <summary>
@@ -389,13 +390,6 @@ namespace Game
 		/// </summary>
 		private void OnAlienDestroyed(Entity entity)
 		{
-			if (!Application.isPlaying)
-			{
-				return;
-			}
-
-			Shake(0.5f, 10f);
-
 			aliens.Remove(entity as Alien);
 
 			// All aliens were destroyed.

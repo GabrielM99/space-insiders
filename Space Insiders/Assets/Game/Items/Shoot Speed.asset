@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Shoot Speed
   m_EditorClassIdentifier: 
   _sprite: {fileID: -2142014178, guid: 745d2a7cc3d54c341a14f7c84937e9bb, type: 3}
+  _color: {r: 0.95294124, g: 0.65882355, b: 0.20000002, a: 1}
   _effects:
   - {fileID: 11400000, guid: 72e8f7ae9fd8ac046ad89e5e5b6c727a, type: 2}

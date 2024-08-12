@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2743f4f2e6ca554d87ebc7502bb0b97, type: 3}
   m_Name: Shoot Speed
   m_EditorClassIdentifier: 
-  _duration: 7
+  _duration: 10
   _speedMultiplier: 1.75

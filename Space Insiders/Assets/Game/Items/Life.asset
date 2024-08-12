@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Life
   m_EditorClassIdentifier: 
   _sprite: {fileID: -1993838329, guid: 745d2a7cc3d54c341a14f7c84937e9bb, type: 3}
+  _color: {r: 0.92549026, g: 0.15294118, b: 0.24705884, a: 1}
   _effects:
   - {fileID: 11400000, guid: cbeb7eaf24bfbfd4cbac2836ab34722f, type: 2}
